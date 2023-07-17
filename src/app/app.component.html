@@ -29,15 +29,20 @@
           <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
         </div>
         <div class="form-group">
-          <label for="subscription">Subscriptions</label>
+          <label for="subscription">Choose a Subscription:</label>
+          <!-- ngModel="advanced" Es pot fer servir aixo en comptes del [ngModel]... -->
           <select
           id="subscription"
           class="form-control"
-          ngModel="advanced"
+          [ngModel]="selectedSubscription"          
           name="subscription">
-            <option value="basic">Basic</option>
+            <!-- <option value="basic">Basic</option>
             <option value="advanced">Advanced</option>
-            <option value="pro">Pro</option>
+            <option value="pro">Pro</option> -->
+            <option
+            *ngFor="let subscription of subscriptions"
+            [value]="subscription">{{ subscription }}
+            </option>
           </select>
         </div>
           <div class="form-group">
@@ -53,7 +58,7 @@
             >
           <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a password!</span>
           </div>   
-          <p class="help-block" *ngIf="!f.valid && f.touched">Missing or wrong information</p>
+          <p class="help-block" *ngIf="!f.valid && f.touched">The form is invalid</p>
           <button class="btn btn-primary"
           type="submit"
           >Submit</button>               
